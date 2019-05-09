@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 
 class IdeasPage extends StatefulWidget {
   @override
@@ -13,6 +13,12 @@ class _IdeasPageState extends State<IdeasPage> {
   }
 
   Widget _buildBody(BuildContext context) {
+    const dummyData = [
+      ["dummy1", "dummy-dummy"],
+      ["lolThisIsDummy", "yeeehhDummy"],
+      ["hooooo", "varr"]
+    ];
+
     return Column(
       children: <Widget>[
         SizedBox(
@@ -20,6 +26,8 @@ class _IdeasPageState extends State<IdeasPage> {
         ),
         Container(
           height: 360,
+          // TODO: after organize UI, revive this
+          /* =====================================
           child: StreamBuilder<QuerySnapshot>(
             stream: Firestore.instance.collection('ideas').snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -37,6 +45,12 @@ class _IdeasPageState extends State<IdeasPage> {
             }
             }
           ),
+          ========================================= */
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: dummyData.length,
+              itemBuilder: (context, index) =>
+                  _buildIdea(context, dummyData[index])),
         ),
       ],
     );
