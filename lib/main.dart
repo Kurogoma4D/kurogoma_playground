@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ideas.dart';
 import 'custom-theme.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,18 +11,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: themeData,
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          title: Text("IDEAS"),
-        ),
-        drawer: Drawer(),
-        body: IdeasPage(),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: (){},
-        ),
+      home: Stack(
+        children: <Widget>[
+          SizedBox.expand(
+            child: FlareActor(
+              "assets/starry_sky.flr",
+              animation: "stars",
+              alignment: Alignment.center,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+          Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              title: Text("IDEAS"),
+            ),
+            drawer: Drawer(),
+            body: IdeasPage(),
+            backgroundColor: Colors.transparent,
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {},
+            ),
+          ),
+        ],
       ),
     );
   }
