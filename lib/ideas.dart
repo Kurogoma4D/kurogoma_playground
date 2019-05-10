@@ -15,8 +15,8 @@ class _IdeasPageState extends State<IdeasPage> {
   Widget _buildBody(BuildContext context) {
     const dummyData = [
       ["dummy1", "dummy-dummy"],
-      ["lolThisIsDummy", "yeeehhDummy"],
-      ["hooooo", "varr"]
+      ["lolThisIsDummy", "yeeehhDummy", "whoa"],
+      ["hooooo", "varr", "huh", "ooops", "lastOfThem"]
     ];
 
     return Column(
