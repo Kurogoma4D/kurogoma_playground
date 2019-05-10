@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 final themeData = ThemeData(
   primarySwatch: Colors.pink,
   primaryIconTheme: IconThemeData(
-    color: Colors.black87
+    color: Colors.white70
   ),
   primaryTextTheme: TextTheme(
     title: TextStyle(
-      color: Colors.black
+      color: Colors.white70
     ),
   ),
   cardTheme: CardTheme(
