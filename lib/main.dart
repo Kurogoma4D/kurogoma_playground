@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ideas.dart';
-import 'custom-theme.dart';
+import 'custom_theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
 void main() => runApp(MyApp());
