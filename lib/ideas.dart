@@ -61,18 +61,21 @@ class _IdeasPageState extends State<IdeasPage> {
       width: 280,
       child: Card(
         margin: const EdgeInsets.all(16),
-        child: AbsorbPointer(
-          child: ListView.builder(
-            itemCount: keywords.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Text(keywords[index].toString()),
-              );
-            },
+          child: AbsorbPointer(
+            child: ListView.builder(
+              itemCount: keywords.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: Text(
+                    keywords[index].toString(),
+                    style: Theme.of(context).primaryTextTheme.body1,
+                  ),
+                );
+              },
+            ),
           ),
         ),
-      ),
     );
   }
 }
