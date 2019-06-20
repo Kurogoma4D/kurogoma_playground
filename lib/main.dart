@@ -1,3 +1,5 @@
+// import 'package:KRPG/drawer.dart';
+import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'pages/ideas.dart';
 import 'custom_theme.dart';
@@ -28,6 +30,7 @@ class MyApp extends StatelessWidget {
               title: Text("IDEAS"),
             ),
             drawer: Drawer(
+              child: DrawerMenu(),
             ),
             body: IdeasPage(),
             backgroundColor: Colors.transparent,
