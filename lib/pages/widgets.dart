@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class WidgetTest extends StatefulWidget {
+class WidgetTestPage extends StatefulWidget {
   @override
-  _WidgetTestState createState() => _WidgetTestState();
+  _WidgetTestPageState createState() => _WidgetTestPageState();
 }
 
-class _WidgetTestState extends State<WidgetTest> {
+class _WidgetTestPageState extends State<WidgetTestPage> {
   @override
   Widget build(BuildContext context) {
     return Center(

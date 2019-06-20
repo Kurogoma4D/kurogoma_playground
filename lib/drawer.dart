@@ -20,7 +20,7 @@ class DrawerMenu extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pop();
             Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => WidgetTest()));
+                .push(MaterialPageRoute(builder: (context) => WidgetTestPage()));
           },
         )
       ],
