@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'pages/ideas.dart';
 import 'custom_theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
