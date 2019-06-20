@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ideas.dart';
+import 'pages/ideas.dart';
 import 'custom_theme.dart';
 import 'package:flare_flutter/flare_actor.dart';
 
