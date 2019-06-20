@@ -1,4 +1,3 @@
-// import 'package:KRPG/drawer.dart';
 import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'pages/ideas.dart';
