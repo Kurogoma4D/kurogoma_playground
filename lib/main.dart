@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
               elevation: 0.0,
               title: Text("IDEAS"),
             ),
-            drawer: Drawer(),
+            drawer: Drawer(
+            ),
             body: IdeasPage(),
             backgroundColor: Colors.transparent,
             floatingActionButton: FloatingActionButton(
