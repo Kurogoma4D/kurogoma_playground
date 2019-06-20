@@ -16,42 +16,53 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: themeData,
-      home: Stack(
-        children: <Widget>[
-          SizedBox.expand(
-            child: FlareActor(
-              "assets/starry_sky.flr",
-              animation: "stars",
-              alignment: Alignment.center,
-              fit: BoxFit.fitHeight,
-            ),
+        theme: themeData,
+        home: ChangeNotifierProvider<AppStateModel>(
+          builder: (_) => AppStateModel(0),
+          child: HomePage(),
+        ));
+  }
+}
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        SizedBox.expand(
+          child: FlareActor(
+            "assets/starry_sky.flr",
+            animation: "stars",
+            alignment: Alignment.center,
+            fit: BoxFit.fitHeight,
           ),
-          ChangeNotifierProvider<AppStateModel>(
-            builder: (_) => AppStateModel(0),
-            child: Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                elevation: 0.0,
-                title: Text("IDEAS"),
-              ),
-              drawer: Drawer(
-                child: DrawerMenu(),
-              ),
-              body: _selectPage(context),
-              backgroundColor: Colors.transparent,
-              floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add),
-                onPressed: () {},
-              ),
-            ),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Text("IDEAS"),
           ),
-        ],
-      ),
+          drawer: Drawer(
+            child: DrawerMenu(),
+          ),
+          body: _selectPage(context),
+          backgroundColor: Colors.transparent,
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            onPressed: () {},
+          ),
+        ),
+      ],
     );
   }
 
-  // ページ増やしたらこれ追加しないといけない
+// ページ増やしたらこれ追加しないといけない
   Widget _selectPage(BuildContext context) {
     Widget page;
     switch (Provider.of<AppStateModel>(context).pageIndex) {
