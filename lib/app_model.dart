@@ -8,7 +8,7 @@ class AppStateModel with ChangeNotifier {
 
   int get pageIndex => _pageIndex;
   List<String> get pages => _pages;
-
+  
   setPage(int _index) {
     _pageIndex = _index;
     notifyListeners();
