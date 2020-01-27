@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-class WidgetTestPage extends StatefulWidget {
-  @override
-  _WidgetTestPageState createState() => _WidgetTestPageState();
-}
-
-class _WidgetTestPageState extends State<WidgetTestPage> {
+class WidgetTestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
@@ -17,7 +12,9 @@ class _WidgetTestPageState extends State<WidgetTestPage> {
 
   Widget _buildListItem(BuildContext context, int index) {
     return Card(
-      child: Placeholder(fallbackHeight: 100,),
+      child: Placeholder(
+        fallbackHeight: 100,
+      ),
     );
   }
 }
