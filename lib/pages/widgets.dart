@@ -7,13 +7,24 @@ class WidgetTestPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: ListView(
         children: <Widget>[
-          _neumorphismicButtons(context),
+          Showcase(
+            title: 'NeumorphismicButtons',
+            children: <Widget>[],
+          ),
         ],
       ),
     );
   }
+}
 
-  Widget _neumorphismicButtons(BuildContext context) {
+class Showcase extends StatelessWidget {
+  final String title;
+  final List<Widget> children;
+
+  const Showcase({Key key, this.title, this.children}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
       color: Colors.white,
       child: Padding(
@@ -22,12 +33,12 @@ class WidgetTestPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              'NeumorphismicButtons',
+              this.title,
               style: Theme.of(context).textTheme.title,
             ),
             const SizedBox(height: 12),
             Row(
-              children: <Widget>[],
+              children: this.children,
             )
           ],
         ),
