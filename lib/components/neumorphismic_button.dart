@@ -1,5 +1,5 @@
 import 'package:KRPG/components/animated_neumorphismic_container.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 class NeumorphismicButton extends StatefulWidget {
   final bool isActive;
@@ -23,7 +23,11 @@ class _NeumorphismicButtonState extends State<NeumorphismicButton> {
       },
       child: AnimatedNeumorphismicContainer(
         depth: _isActive ? 1.0 : 0.0,
-        baseColor: Color(0xFFF2F2F2),
+        color: Color(0xFFF2F2F2),
+        width: 60,
+        height: 60,
+        radius: 16,
+        child: Icon(Icons.access_time),
       ),
     );
   }

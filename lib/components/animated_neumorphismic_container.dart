@@ -5,11 +5,22 @@ import 'package:flutter/widgets.dart';
 
 class AnimatedNeumorphismicContainer extends StatelessWidget {
   final double depth;
-  final Color baseColor;
+  final Color color;
+  final double width;
+  final double height;
+  final Widget child;
+  final double radius;
 
-  const AnimatedNeumorphismicContainer(
-      {Key key, @required this.depth, this.baseColor})
-      : super(key: key);
+  const AnimatedNeumorphismicContainer({
+    Key key,
+    @required this.depth,
+    this.color = Colors.white,
+    this.width,
+    this.height,
+    this.child,
+    this.radius = 8,
+  })  : assert(color != null),
+        super(key: key);
 
   static final _curve = Curves.easeInOut;
 
@@ -25,21 +36,21 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
       curve: _curve,
       builder: (BuildContext context, double depthValue, Widget child) {
         return Container(
-          width: 60,
-          height: 60,
+          width: this.width,
+          height: this.height,
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 _darkColor,
-                this.baseColor,
+                this.color,
                 _lightColor,
               ],
               stops: [0, 0.2, 0.8],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(this.radius),
             boxShadow: [
               BoxShadow(
                 offset: _lerpedOffsetLight(depthValue),
@@ -58,7 +69,7 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
           child: child,
         );
       },
-      child: Icon(Icons.access_time),
+      child: this.child,
     );
   }
 
@@ -77,13 +88,13 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
   }
 
   Color _createLightColor() {
-    final hsv = HSVColor.fromColor(this.baseColor);
+    final hsv = HSVColor.fromColor(this.color);
     final newValue = (hsv.value + 0.2).clamp(0, 1.0);
     return hsv.withValue(newValue).toColor();
   }
 
   Color _createDarkColor() {
-    final hsv = HSVColor.fromColor(this.baseColor).withAlpha(0.4);
+    final hsv = HSVColor.fromColor(this.color).withAlpha(0.4);
     final newValue = (hsv.value - 0.2).clamp(0, 1.0);
     return hsv.withValue(newValue).toColor();
   }
