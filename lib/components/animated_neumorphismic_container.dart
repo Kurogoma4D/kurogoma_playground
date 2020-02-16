@@ -15,7 +15,10 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _lightColor = _createLightColor();
+    final _darkColor = _createDarkColor();
     final _tween = Tween<double>(begin: 0, end: depth);
+
     return TweenAnimationBuilder(
       tween: _tween,
       duration: const Duration(milliseconds: 250),
@@ -26,20 +29,29 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
           height: 60,
           padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
-            color: this.baseColor,
+            gradient: LinearGradient(
+              colors: [
+                _darkColor,
+                this.baseColor,
+                _lightColor,
+              ],
+              stops: [0, 0.2, 0.8],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                offset: _lerpedOffset(depthValue),
-                color: _lerpedColor(depthValue),
-                blurRadius: lerpDouble(8, 6, depthValue),
-                spreadRadius: lerpDouble(4, -4, depthValue),
+                offset: _lerpedOffsetLight(depthValue),
+                color: _lightColor,
+                blurRadius: lerpDouble(4, 0.5, depthValue),
+                spreadRadius: lerpDouble(2, 1, depthValue),
               ),
               BoxShadow(
-                offset: _lerpedOffset(1.0 - depthValue),
-                color: _lerpedColor(1.0 - depthValue),
-                blurRadius: lerpDouble(6, 8, depthValue),
-                spreadRadius: lerpDouble(4, -4, depthValue),
+                offset: _lerpedOffsetDark(depthValue),
+                color: _darkColor,
+                blurRadius: lerpDouble(4, 0.5, depthValue),
+                spreadRadius: lerpDouble(2, 1, depthValue),
               ),
             ],
           ),
@@ -50,15 +62,29 @@ class AnimatedNeumorphismicContainer extends StatelessWidget {
     );
   }
 
-  Offset _lerpedOffset(double t) {
-    final begin = const Offset(-4, -4);
-    final end = const Offset(4, 4);
+  Offset _lerpedOffsetLight(double t) {
+    //TODO: サイズに比例させる
+    final begin = const Offset(-6, -6);
+    final end = const Offset(-2, -2);
     return Offset.lerp(begin, end, t);
   }
 
-  Color _lerpedColor(double t) {
-    final begin = Color.fromRGBO(255, 255, 255, 1);
-    final end = Color.fromRGBO(55, 84, 170, 0.2);
-    return Color.lerp(begin, end, t);
+  Offset _lerpedOffsetDark(double t) {
+    //TODO: サイズに比例させる
+    final begin = const Offset(6, 6);
+    final end = const Offset(2, 2);
+    return Offset.lerp(begin, end, t);
+  }
+
+  Color _createLightColor() {
+    final hsv = HSVColor.fromColor(this.baseColor);
+    final newValue = (hsv.value + 0.2).clamp(0, 1.0);
+    return hsv.withValue(newValue).toColor();
+  }
+
+  Color _createDarkColor() {
+    final hsv = HSVColor.fromColor(this.baseColor).withAlpha(0.4);
+    final newValue = (hsv.value - 0.2).clamp(0, 1.0);
+    return hsv.withValue(newValue).toColor();
   }
 }
