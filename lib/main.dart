@@ -1,5 +1,9 @@
 import 'package:KRPG/app_model.dart';
+import 'package:KRPG/pages/counter_page.dart';
 import 'package:KRPG/pages/widgets.dart';
+import 'package:KRPG/states/counter/counter.dart';
+import 'package:KRPG/states/counter/counter_controller.dart';
+import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
 import 'drawer.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +20,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: themeData,
-        home: ChangeNotifierProvider<AppStateModel>(
-          builder: (_) => AppStateModel(0),
-          child: HomePage(),
-        ));
+      theme: themeData,
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<AppStateModel>(
+            create: (_) => AppStateModel(0),
+          ),
+          StateNotifierProvider<CounterController, Counter>(
+            create: (context) => CounterController(),
+          )
+        ],
+        child: HomePage(),
+      ),
+    );
   }
 }
 
@@ -53,10 +65,6 @@ class _HomePageState extends State<HomePage> {
           ),
           body: _selectPage(context),
           backgroundColor: Colors.transparent,
-          floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {},
-          ),
         ),
       ],
     );
@@ -71,6 +79,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 1:
         page = WidgetTestPage();
+        break;
+      case 2:
+        page = CounterPage();
         break;
     }
     return page;

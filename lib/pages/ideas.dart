@@ -69,7 +69,7 @@ class _IdeasPageState extends State<IdeasPage> {
                   padding: const EdgeInsets.all(24.0),
                   child: Text(
                     keywords[index].toString(),
-                    style: Theme.of(context).primaryTextTheme.body1,
+                    style: Theme.of(context).primaryTextTheme.bodyText2,
                   ),
                 );
               },

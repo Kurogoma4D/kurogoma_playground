@@ -6,10 +6,10 @@ final themeData = ThemeData(
     color: Colors.white70
   ),
   primaryTextTheme: TextTheme(
-    title: TextStyle(
+    headline6: TextStyle(
       color: Colors.white70
     ),
-    body1: TextStyle(
+    bodyText2: TextStyle(
       color: Colors.white
     )
   ),
