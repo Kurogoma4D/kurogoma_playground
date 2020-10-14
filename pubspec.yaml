@@ -14,7 +14,7 @@ description: Kurogoma4D's Playground.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -28,6 +28,7 @@ dependencies:
   flutter_state_notifier:
   freezed_annotation:
   json_serializable:
+  vsync_provider: ^0.4.1
 
 dev_dependencies:
   pedantic_mono:
