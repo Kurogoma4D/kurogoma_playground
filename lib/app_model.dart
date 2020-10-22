@@ -11,6 +11,8 @@ class AppStateModel with ChangeNotifier {
     "TAB",
     "GUARDED_BUTTON",
     "IMAGE_UPLOAD",
+    "CLEAR_TEXT",
+    "WEB_VIEW",
   ];
 
   int get pageIndex => _pageIndex;

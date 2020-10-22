@@ -30,6 +30,7 @@ dependencies:
   json_serializable:
   vsync_provider: ^0.4.1
   image_picker: ^0.6.7+12
+  flutter_inappwebview: ^4.0.0+4
 
 dev_dependencies:
   pedantic_mono:

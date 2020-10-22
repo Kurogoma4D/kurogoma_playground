@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:KRPG/app_model.dart';
 import 'package:KRPG/pages/counter_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
 import 'package:KRPG/pages/image_upload.dart';
 import 'package:KRPG/pages/tab_view_page.dart';
+import 'package:KRPG/pages/unfocus_clear_text_page.dart';
+import 'package:KRPG/pages/webview_page.dart';
 import 'package:KRPG/pages/widgets.dart';
 import 'package:KRPG/states/counter/counter.dart';
 import 'package:KRPG/states/counter/counter_controller.dart';
@@ -16,7 +20,10 @@ import 'package:flare_flutter/flare_actor.dart';
 import 'package:provider/provider.dart';
 import 'app_model.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -94,6 +101,12 @@ class _HomePageState extends State<HomePage> {
         break;
       case 5:
         page = ImageUploadPage();
+        break;
+      case 6:
+        page = UnFocusClearText.wrapped();
+        break;
+      case 7:
+        page = WebViewPage.wrapped();
         break;
     }
     return page;
