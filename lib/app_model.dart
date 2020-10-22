@@ -10,6 +10,7 @@ class AppStateModel with ChangeNotifier {
     "STATE_NOTIFIER",
     "TAB",
     "GUARDED_BUTTON",
+    "IMAGE_UPLOAD",
   ];
 
   int get pageIndex => _pageIndex;

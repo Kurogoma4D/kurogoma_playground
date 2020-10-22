@@ -1,6 +1,7 @@
 import 'package:KRPG/app_model.dart';
 import 'package:KRPG/pages/counter_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
+import 'package:KRPG/pages/image_upload.dart';
 import 'package:KRPG/pages/tab_view_page.dart';
 import 'package:KRPG/pages/widgets.dart';
 import 'package:KRPG/states/counter/counter.dart';
@@ -90,6 +91,9 @@ class _HomePageState extends State<HomePage> {
         break;
       case 4:
         page = GuardedButtonPage();
+        break;
+      case 5:
+        page = ImageUploadPage();
         break;
     }
     return page;
