@@ -56,13 +56,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        SizedBox.expand(
-          child: FlareActor(
-            "assets/starry_sky.flr",
-            animation: "stars",
-            alignment: Alignment.center,
-            fit: BoxFit.fitHeight,
-          ),
+        // SizedBox.expand(
+        //   child: FlareActor(
+        //     "assets/starry_sky.flr",
+        //     animation: "stars",
+        //     alignment: Alignment.center,
+        //     fit: BoxFit.fitHeight,
+        //   ),
+        // ),
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.blueGrey,
         ),
         Scaffold(
           appBar: AppBar(

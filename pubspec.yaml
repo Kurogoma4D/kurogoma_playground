@@ -31,6 +31,12 @@ dependencies:
   vsync_provider: ^0.4.1
   image_picker: ^0.6.7+12
   flutter_inappwebview: ^4.0.0+4
+  extended_image: ^1.0.0
+  image: ^2.1.18
+  indexed_list_view:
+    git:
+      url: git@github.com:Kurogoma4D/indexed_list_view.git
+  infinite_listview: ^1.0.1+1
 
 dev_dependencies:
   pedantic_mono:
