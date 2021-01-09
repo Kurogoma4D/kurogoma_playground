@@ -1,21 +1,22 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'app_model.dart';
+import 'package:flutter_riverpod/all.dart';
+import 'page_state_controller.dart';
 
-class DrawerMenu extends StatelessWidget {
+class DrawerMenu extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    return Consumer<AppStateModel>(builder: (context, _model, _child) {
-      return ListView.builder(
-        itemCount: _model.pages.length,
-        itemBuilder: (context, _index) => ListTile(
-              title: Text(_model.pages[_index]),
-              onTap: () {
-                Navigator.of(context).pop();
-                _model.setPage(_index);
-              },
-            ),
-      );
-    });
+  Widget build(BuildContext context, ScopedReader watch) {
+    return ListView(
+      children: [
+        for (final page in Pages.values)
+          ListTile(
+            title: Text(describeEnum(page)),
+            onTap: () {
+              Navigator.of(context).pop();
+              context.read(pageStateControllerProvider).setPage(page.index);
+            },
+          ),
+      ],
+    );
   }
 }

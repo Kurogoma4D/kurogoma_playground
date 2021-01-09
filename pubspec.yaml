@@ -19,23 +19,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # firebase_core: ^0.4.3+2
-  # cloud_firestore: ^0.13.0+1
-  flare_flutter: ^2.0.1
-  # bloc_provider: ^0.6.1+1
-  provider: ^4.1.0-dev
-  state_notifier:
-  flutter_state_notifier:
+  riverpod: ^0.12.1
+  flutter_riverpod: ^0.12.1
   freezed_annotation:
   json_serializable:
   vsync_provider: ^0.4.1
   image_picker: ^0.6.7+12
   flutter_inappwebview: ^4.0.0+4
-  extended_image: ^1.0.0
-  image: ^2.1.18
-  indexed_list_view:
+  extended_image:
     git:
-      url: git@github.com:Kurogoma4D/indexed_list_view.git
+      url: git@github.com:fluttercandies/extended_image.git
+      ref: dev
+  image: ^2.1.18
   infinite_listview: ^1.0.1+1
 
 dev_dependencies:

@@ -1,47 +1,29 @@
-import 'dart:io';
-
-import 'package:KRPG/app_model.dart';
+import 'package:KRPG/page_state_controller.dart';
 import 'package:KRPG/pages/counter_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
 import 'package:KRPG/pages/image_upload.dart';
-import 'package:KRPG/pages/tab_view_page.dart';
 import 'package:KRPG/pages/unfocus_clear_text_page.dart';
 import 'package:KRPG/pages/webview_page.dart';
 import 'package:KRPG/pages/widgets.dart';
-import 'package:KRPG/states/counter/counter.dart';
-import 'package:KRPG/states/counter/counter_controller.dart';
-import 'package:flutter_state_notifier/flutter_state_notifier.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'drawer.dart';
 import 'package:flutter/material.dart';
 import 'pages/ideas.dart';
 import 'custom_theme.dart';
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:provider/provider.dart';
-import 'app_model.dart';
+import 'page_state_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: themeData,
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider<AppStateModel>(
-            create: (_) => AppStateModel(0),
-          ),
-          StateNotifierProvider<CounterController, Counter>(
-            create: (context) => CounterController(),
-          )
-        ],
-        child: HomePage(),
-      ),
+      home: HomePage(),
     );
   }
 }
@@ -56,14 +38,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        // SizedBox.expand(
-        //   child: FlareActor(
-        //     "assets/starry_sky.flr",
-        //     animation: "stars",
-        //     alignment: Alignment.center,
-        //     fit: BoxFit.fitHeight,
-        //   ),
-        // ),
         Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -78,42 +52,38 @@ class _HomePageState extends State<HomePage> {
           drawer: Drawer(
             child: DrawerMenu(),
           ),
-          body: _selectPage(context),
+          body: const _Contents(),
           backgroundColor: Colors.transparent,
         ),
       ],
     );
   }
+}
 
-// ページ増やしたらこれ追加しないといけない
-  Widget _selectPage(BuildContext context) {
-    Widget page;
-    switch (Provider.of<AppStateModel>(context).pageIndex) {
-      case 0:
-        page = IdeasPage();
-        break;
-      case 1:
-        page = WidgetTestPage();
-        break;
-      case 2:
-        page = CounterPage();
-        break;
-      case 3:
-        page = TabViewPage.wrapped();
-        break;
-      case 4:
-        page = GuardedButtonPage();
-        break;
-      case 5:
-        page = ImageUploadPage();
-        break;
-      case 6:
-        page = UnFocusClearText.wrapped();
-        break;
-      case 7:
-        page = WebViewPage.wrapped();
-        break;
+class _Contents extends ConsumerWidget {
+  const _Contents({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final state = watch(pageStateControllerProvider.state);
+    switch (state) {
+      case Pages.HOME:
+        return IdeasPage();
+      case Pages.WIDGETS:
+        return WidgetTestPage();
+      case Pages.STATE_NOTIFIER:
+        return CounterPage();
+      case Pages.GUARDED_BUTTON:
+        return GuardedButtonPage();
+      case Pages.IMAGE_UPLOAD:
+        return ImageUploadPage();
+      case Pages.CLEAR_TEXT:
+        return UnFocusClearText.wrapped();
+      case Pages.WEB_VIEW:
+        return WebViewPage.wrapped();
+      default:
+        return IdeasPage();
     }
-    return page;
+    ;
   }
 }
