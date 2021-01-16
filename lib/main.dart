@@ -1,6 +1,8 @@
 import 'package:KRPG/page_state_controller.dart';
+import 'package:KRPG/pages/accelerometer_page.dart';
 import 'package:KRPG/pages/counter_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
+import 'package:KRPG/pages/gyro_sensor_page.dart';
 import 'package:KRPG/pages/image_upload.dart';
 import 'package:KRPG/pages/unfocus_clear_text_page.dart';
 import 'package:KRPG/pages/webview_page.dart';
@@ -81,9 +83,12 @@ class _Contents extends ConsumerWidget {
         return UnFocusClearText.wrapped();
       case Pages.WEB_VIEW:
         return WebViewPage.wrapped();
+      case Pages.GYRO_PAGE:
+        return GyroSensorPage();
+      case Pages.ACCELEROMETER_PAGE:
+        return AccelerometerPage();
       default:
         return IdeasPage();
     }
-    ;
   }
 }

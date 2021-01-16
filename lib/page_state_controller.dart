@@ -11,6 +11,8 @@ enum Pages {
   IMAGE_UPLOAD,
   CLEAR_TEXT,
   WEB_VIEW,
+  GYRO_PAGE,
+  ACCELEROMETER_PAGE,
 }
 
 class PageStateController extends StateNotifier<Pages> {
