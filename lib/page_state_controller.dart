@@ -13,6 +13,7 @@ enum Pages {
   WEB_VIEW,
   GYRO_PAGE,
   ACCELEROMETER_PAGE,
+  FUNCTION_MACRO,
 }
 
 class PageStateController extends StateNotifier<Pages> {

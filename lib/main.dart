@@ -1,6 +1,7 @@
 import 'package:KRPG/page_state_controller.dart';
 import 'package:KRPG/pages/accelerometer_page.dart';
 import 'package:KRPG/pages/counter_page.dart';
+import 'package:KRPG/pages/function_macro_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
 import 'package:KRPG/pages/gyro_sensor_page.dart';
 import 'package:KRPG/pages/image_upload.dart';
@@ -87,6 +88,8 @@ class _Contents extends ConsumerWidget {
         return GyroSensorPage();
       case Pages.ACCELEROMETER_PAGE:
         return AccelerometerPage();
+      case Pages.FUNCTION_MACRO:
+        return FunctionMacroPage();
       default:
         return IdeasPage();
     }
