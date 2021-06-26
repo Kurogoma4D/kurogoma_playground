@@ -14,6 +14,7 @@ enum Pages {
   GYRO_PAGE,
   ACCELEROMETER_PAGE,
   FUNCTION_MACRO,
+  PHYSICS,
 }
 
 class PageStateController extends StateNotifier<Pages> {

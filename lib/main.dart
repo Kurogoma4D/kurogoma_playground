@@ -5,6 +5,7 @@ import 'package:KRPG/pages/function_macro_page.dart';
 import 'package:KRPG/pages/guarded_button_page.dart';
 import 'package:KRPG/pages/gyro_sensor_page.dart';
 import 'package:KRPG/pages/image_upload.dart';
+import 'package:KRPG/pages/physics_page.dart';
 import 'package:KRPG/pages/unfocus_clear_text_page.dart';
 import 'package:KRPG/pages/webview_page.dart';
 import 'package:KRPG/pages/widgets.dart';
@@ -90,6 +91,8 @@ class _Contents extends ConsumerWidget {
         return AccelerometerPage();
       case Pages.FUNCTION_MACRO:
         return FunctionMacroPage();
+      case Pages.PHYSICS:
+        return PhysicsPage();
       default:
         return IdeasPage();
     }
