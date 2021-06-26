@@ -69,7 +69,7 @@ class _Contents extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(pageStateControllerProvider.state);
+    final state = watch(pageStateControllerProvider);
     switch (state) {
       case Pages.HOME:
         return IdeasPage();

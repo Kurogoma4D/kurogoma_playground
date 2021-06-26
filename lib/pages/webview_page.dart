@@ -34,7 +34,8 @@ class WebViewPage extends StatelessWidget {
                 Offstage(
                   offstage: screenShot != null,
                   child: InAppWebView(
-                    initialUrl: 'https://google.com',
+                    initialUrlRequest:
+                        URLRequest(url: Uri.parse('https://google.com')),
                     onWebViewCreated: (controller) => context
                         .read<WebViewPageController>()
                         .setWebViewController(controller),
@@ -46,19 +47,19 @@ class WebViewPage extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              FlatButton(
+              TextButton(
                 child: Text('Take SS'),
                 onPressed: () =>
                     context.read<WebViewPageController>().takeScreenShot(),
               ),
               const SizedBox(width: 16),
-              FlatButton(
+              TextButton(
                 child: Text('save'),
                 onPressed: () =>
                     context.read<WebViewPageController>().saveImage(),
               ),
               const SizedBox(width: 16),
-              FlatButton(
+              TextButton(
                 child: Text('clear'),
                 onPressed: () =>
                     context.read<WebViewPageController>().clearImage(),

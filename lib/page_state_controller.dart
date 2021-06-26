@@ -1,7 +1,8 @@
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final pageStateControllerProvider =
-    StateNotifierProvider((_) => PageStateController());
+    StateNotifierProvider<PageStateController, Pages>(
+        (_) => PageStateController());
 
 enum Pages {
   HOME,

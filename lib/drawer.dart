@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/all.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'page_state_controller.dart';
 
 class DrawerMenu extends ConsumerWidget {
@@ -13,7 +14,9 @@ class DrawerMenu extends ConsumerWidget {
             title: Text(describeEnum(page)),
             onTap: () {
               Navigator.of(context).pop();
-              context.read(pageStateControllerProvider).setPage(page.index);
+              context
+                  .read(pageStateControllerProvider.notifier)
+                  .setPage(page.index);
             },
           ),
       ],
