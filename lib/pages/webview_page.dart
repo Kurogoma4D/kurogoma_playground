@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
@@ -10,7 +11,7 @@ import 'package:image/image.dart' as image;
 final editorKey = GlobalKey<ExtendedImageEditorState>();
 
 class WebViewPage extends StatelessWidget {
-  const WebViewPage._({Key key}) : super(key: key);
+  const WebViewPage._({Key? key}) : super(key: key);
 
   static Widget wrapped() {
     return MultiProvider(
@@ -73,7 +74,7 @@ class WebViewPage extends StatelessWidget {
 }
 
 class _ImageViewer extends StatelessWidget {
-  const _ImageViewer({Key key}) : super(key: key);
+  const _ImageViewer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,7 @@ class _ImageViewer extends StatelessWidget {
       child: isProcessing
           ? CircularProgressIndicator()
           : ExtendedImage.memory(
-              screenShot,
+              screenShot!,
               extendedImageEditorKey: editorKey,
               mode: imageMode,
               fit: BoxFit.contain,
@@ -104,13 +105,13 @@ class _ImageViewer extends StatelessWidget {
 class WebViewPageController extends ChangeNotifier {
   WebViewPageController({this.locator});
 
-  final Locator locator;
-  InAppWebViewController _webViewController;
-  InAppWebViewController get webViewController => _webViewController;
+  final Locator? locator;
+  InAppWebViewController? _webViewController;
+  InAppWebViewController? get webViewController => _webViewController;
   ExtendedImageMode imageMode = ExtendedImageMode.editor;
   bool isProcessing = false;
 
-  Uint8List screenShot;
+  Uint8List? screenShot;
 
   void setWebViewController(InAppWebViewController instance) {
     _webViewController = instance;
@@ -125,10 +126,12 @@ class WebViewPageController extends ChangeNotifier {
     isProcessing = true;
     notifyListeners();
 
-    final rect = editorKey.currentState.getCropRect();
+    final rect = editorKey.currentState!.getCropRect()!;
     final rawImage = screenShot;
 
-    var sourceImage = await compute(image.decodeImage, rawImage);
+    var sourceImage = await compute(image.decodeImage, rawImage as List<int>);
+
+    if (sourceImage == null) return;
 
     sourceImage = image.bakeOrientation(sourceImage);
     sourceImage = image.copyCrop(
@@ -148,7 +151,7 @@ class WebViewPageController extends ChangeNotifier {
   }
 
   void takeScreenShot() async {
-    final result = await _webViewController.takeScreenshot();
+    final result = await _webViewController!.takeScreenshot();
     if (result == null) return;
     screenShot = result;
     imageMode = ExtendedImageMode.editor;

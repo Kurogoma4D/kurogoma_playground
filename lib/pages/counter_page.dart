@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CounterPage extends ConsumerWidget {
-  const CounterPage({Key key}) : super(key: key);
+  const CounterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -14,7 +14,8 @@ class CounterPage extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => context.read(counterControllerProvider).increment(),
+        onPressed: () =>
+            context.read(counterControllerProvider.notifier).increment(),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:extended_image/extended_image.dart';
@@ -10,7 +11,7 @@ final imagePicker = ImagePicker();
 final editorKey = GlobalKey<ExtendedImageEditorState>();
 
 class ImageUploadPage extends StatefulWidget {
-  const ImageUploadPage({Key key}) : super(key: key);
+  const ImageUploadPage({Key? key}) : super(key: key);
 
   @override
   _ImageUploadPageState createState() => _ImageUploadPageState();
@@ -18,7 +19,7 @@ class ImageUploadPage extends StatefulWidget {
 
 class _ImageUploadPageState extends State<ImageUploadPage> {
   String pickedImagePath = '';
-  Uint8List rawImage;
+  Uint8List? rawImage;
   ExtendedImageMode imageMode = ExtendedImageMode.none;
 
   @override
@@ -30,7 +31,7 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
           Expanded(
             child: rawImage != null
                 ? ExtendedImage.memory(
-                    rawImage,
+                    rawImage!,
                     extendedImageEditorKey: editorKey,
                     mode: imageMode,
                     fit: BoxFit.contain,
@@ -40,10 +41,11 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              FlatButton(
+              TextButton(
                 onPressed: () async {
                   final pickedImage =
                       await imagePicker.getImage(source: ImageSource.camera);
+                  if (pickedImage == null) return;
                   final data = await pickedImage.readAsBytes();
                   setState(() {
                     rawImage = data;
@@ -52,10 +54,11 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 },
                 child: Text('camera'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () async {
                   final pickedImage =
                       await imagePicker.getImage(source: ImageSource.gallery);
+                  if (pickedImage == null) return;
                   final data = await pickedImage.readAsBytes();
                   setState(() {
                     rawImage = data;
@@ -64,11 +67,14 @@ class _ImageUploadPageState extends State<ImageUploadPage> {
                 },
                 child: Text('gallery'),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () async {
-                  final rect = editorKey.currentState.getCropRect();
+                  final rect = editorKey.currentState!.getCropRect()!;
 
-                  var sourceImage = await compute(image.decodeImage, rawImage);
+                  var sourceImage =
+                      await compute(image.decodeImage, rawImage as List<int>);
+
+                  if (sourceImage == null) return;
 
                   sourceImage = image.bakeOrientation(sourceImage);
                   sourceImage = image.copyCrop(

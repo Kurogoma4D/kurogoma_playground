@@ -15,7 +15,7 @@ class AccelerometerEventString {
 }
 
 class AccelerometerPage extends StatelessWidget {
-  const AccelerometerPage({Key key}) : super(key: key);
+  const AccelerometerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class AccelerometerPage extends StatelessWidget {
 }
 
 class _AccelerometerView extends ConsumerWidget {
-  const _AccelerometerView({Key key}) : super(key: key);
+  const _AccelerometerView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -44,7 +44,7 @@ class _AccelerometerView extends ConsumerWidget {
 }
 
 class AccelerometerPageController extends ChangeNotifier {
-  Stream<AccelerometerEventString> accelerometerStream;
+  Stream<AccelerometerEventString>? accelerometerStream;
 
   AccelerometerPageController() {
     accelerometerStream = accelerometerEvents.map(

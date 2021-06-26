@@ -2,9 +2,9 @@ import 'package:KRPG/components/animated_neumorphismic_container.dart';
 import 'package:flutter/material.dart';
 
 class NeumorphismicButton extends StatefulWidget {
-  final bool isActive;
+  final bool? isActive;
 
-  const NeumorphismicButton({Key key, this.isActive}) : super(key: key);
+  const NeumorphismicButton({Key? key, this.isActive}) : super(key: key);
 
   @override
   _NeumorphismicButtonState createState() => _NeumorphismicButtonState();

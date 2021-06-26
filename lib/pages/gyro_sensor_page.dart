@@ -15,7 +15,7 @@ class GyroScopeEventString {
 }
 
 class GyroSensorPage extends StatelessWidget {
-  const GyroSensorPage({Key key}) : super(key: key);
+  const GyroSensorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class GyroSensorPage extends StatelessWidget {
 }
 
 class _GyroSensorView extends ConsumerWidget {
-  const _GyroSensorView({Key key}) : super(key: key);
+  const _GyroSensorView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -44,7 +44,7 @@ class _GyroSensorView extends ConsumerWidget {
 }
 
 class GyroSensorPageController extends ChangeNotifier {
-  Stream<GyroScopeEventString> gyroStream;
+  Stream<GyroScopeEventString>? gyroStream;
 
   GyroSensorPageController() {
     gyroStream = gyroscopeEvents.map(

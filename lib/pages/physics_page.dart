@@ -32,7 +32,7 @@ class PhysicsEngine {
 }
 
 class PhysicsPage extends StatelessWidget {
-  const PhysicsPage({Key key}) : super(key: key);
+  const PhysicsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class PhysicsPage extends StatelessWidget {
 }
 
 class _Contents extends StatefulWidget {
-  const _Contents({Key key}) : super(key: key);
+  const _Contents({Key? key}) : super(key: key);
 
   @override
   __ContentsState createState() => __ContentsState();
@@ -49,8 +49,8 @@ class _Contents extends StatefulWidget {
 
 class __ContentsState extends State<_Contents>
     with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  PhysicsEngine engine;
+  late AnimationController controller;
+  late PhysicsEngine engine;
 
   @override
   void initState() {
@@ -99,7 +99,7 @@ class __ContentsState extends State<_Contents>
 }
 
 class _PhysicsPainter extends CustomPainter {
-  final Offset position;
+  final Offset? position;
 
   _PhysicsPainter({this.position});
 
@@ -109,7 +109,7 @@ class _PhysicsPainter extends CustomPainter {
       Rect.fromLTWH(0, 0, size.width, size.height),
       Paint()..color = Colors.white,
     );
-    canvas.drawCircle(position, 40, Paint()..color = Colors.teal);
+    canvas.drawCircle(position!, 40, Paint()..color = Colors.teal);
   }
 
   @override

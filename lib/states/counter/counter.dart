@@ -4,6 +4,6 @@ import 'package:flutter/foundation.dart';
 part 'counter.freezed.dart';
 
 @freezed
-abstract class Counter with _$Counter {
-  const factory Counter({@required int count}) = _Counter;
+class Counter with _$Counter {
+  const factory Counter({required int count}) = _Counter;
 }

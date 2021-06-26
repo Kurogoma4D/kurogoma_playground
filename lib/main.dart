@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _Contents extends ConsumerWidget {
-  const _Contents({Key key}) : super(key: key);
+  const _Contents({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {

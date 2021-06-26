@@ -28,11 +28,11 @@ class WidgetTestPage extends StatelessWidget {
 }
 
 class Showcase extends StatelessWidget {
-  final String title;
-  final List<Widget> children;
-  final Color baseColor;
+  final String? title;
+  final List<Widget>? children;
+  final Color? baseColor;
 
-  const Showcase({Key key, this.title, this.children, this.baseColor})
+  const Showcase({Key? key, this.title, this.children, this.baseColor})
       : super(key: key);
 
   @override
@@ -45,12 +45,12 @@ class Showcase extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              this.title,
+              this.title!,
               style: Theme.of(context).textTheme.headline6,
             ),
             const SizedBox(height: 12),
             Row(
-              children: this.children,
+              children: this.children!,
             )
           ],
         ),

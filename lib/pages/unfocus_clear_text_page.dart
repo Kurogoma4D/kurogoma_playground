@@ -11,7 +11,7 @@ class PreventableFocusNode extends FocusNode {
 }
 
 class UnFocusClearText extends StatelessWidget {
-  const UnFocusClearText._({Key key}) : super(key: key);
+  const UnFocusClearText._({Key? key}) : super(key: key);
 
   static Widget wrapped() {
     return MultiProvider(
@@ -62,17 +62,17 @@ class UnFocusClearTextController extends ChangeNotifier {
     _focus.addListener(_onFocusChange);
     _inputTextController = TextEditingController();
 
-    _inputTextController.addListener(() {
-      inputText = _inputTextController.text;
+    _inputTextController!.addListener(() {
+      inputText = _inputTextController!.text;
       notifyListeners();
     });
   }
 
-  final Locator locator;
+  final Locator? locator;
   PreventableFocusNode _focus = PreventableFocusNode();
   PreventableFocusNode get focus => _focus;
-  TextEditingController _inputTextController;
-  TextEditingController get inputTextController => _inputTextController;
+  TextEditingController? _inputTextController;
+  TextEditingController? get inputTextController => _inputTextController;
   String inputText = '';
 
   void _onFocusChange() {
@@ -87,7 +87,7 @@ class UnFocusClearTextController extends ChangeNotifier {
 
     // キーワードのリセット
     inputText = '';
-    _inputTextController.clear();
+    _inputTextController!.clear();
     notifyListeners();
 
     // rebuild後のコールバックだとフォーカスされてしまうためディレイ

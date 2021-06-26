@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SemiModal extends StatefulWidget {
-  const SemiModal({Key key}) : super(key: key);
+  const SemiModal({Key? key}) : super(key: key);
 
   @override
   _SemiModalState createState() => _SemiModalState();

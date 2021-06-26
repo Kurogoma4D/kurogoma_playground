@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GuardedButtonPage extends StatelessWidget {
-  const GuardedButtonPage({Key key}) : super(key: key);
+  const GuardedButtonPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +18,15 @@ class GuardedButtonPage extends StatelessWidget {
 
 class SwitchableFlatButton extends StatelessWidget {
   const SwitchableFlatButton({
-    Key key,
+    Key? key,
     this.buttonText,
     this.onTap,
     this.enabled,
   }) : super(key: key);
 
-  final String buttonText;
-  final VoidCallback onTap;
-  final bool enabled;
+  final String? buttonText;
+  final VoidCallback? onTap;
+  final bool? enabled;
 
   @override
   Widget build(BuildContext context) {
@@ -35,18 +35,18 @@ class SwitchableFlatButton extends StatelessWidget {
       textColor: Colors.black87,
       disabledColor: Colors.grey,
       disabledTextColor: Colors.white,
-      child: Text(buttonText),
-      onPressed: enabled ? onTap : null,
+      child: Text(buttonText!),
+      onPressed: enabled! ? onTap : null,
     );
   }
 }
 
 class _GuardedButton extends StatefulWidget {
-  const _GuardedButton({Key key, this.buttonText, this.onTap})
+  const _GuardedButton({Key? key, this.buttonText, this.onTap})
       : super(key: key);
 
-  final String buttonText;
-  final Function onTap;
+  final String? buttonText;
+  final Function? onTap;
 
   @override
   __GuardedButtonState createState() => __GuardedButtonState();
@@ -62,7 +62,7 @@ class __GuardedButtonState extends State<_GuardedButton> {
       buttonText: widget.buttonText,
       onTap: () async {
         setState(() => isActive = false);
-        await widget.onTap();
+        await widget.onTap!();
         if (mounted) setState(() => isActive = true);
       },
       enabled: isActive,

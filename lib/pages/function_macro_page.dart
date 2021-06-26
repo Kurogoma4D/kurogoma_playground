@@ -12,14 +12,14 @@ Provider<int> generateProvider<T>() => Provider((_) => random.nextInt(50000));
 final _generated = generateProvider<int>();
 
 class FunctionMacroPage extends StatelessWidget {
-  const FunctionMacroPage({Key key}) : super(key: key);
+  const FunctionMacroPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => const _Contents();
 }
 
 class _Contents extends StatefulWidget {
-  const _Contents({Key key}) : super(key: key);
+  const _Contents({Key? key}) : super(key: key);
 
   @override
   __ContentsState createState() => __ContentsState();
